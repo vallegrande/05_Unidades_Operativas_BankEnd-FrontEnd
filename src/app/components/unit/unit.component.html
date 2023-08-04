@@ -1,0 +1,104 @@
+<!-- <nav class="navbar bg-light"> -->
+    <nav class="navbar" style="background-color: #110f0c;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img style="border-radius: 10px;" src="https://2.bp.blogspot.com/-FEPAl8S8D4g/WeWXpzwsJkI/AAAAAAAAABs/3ATCIVmZgKgXE4psTzBmv3Lgm0xT4iCBQCLcBGAs/s1600/SOA-CA%25C3%2591ETE.png" alt="Logo" width="280" height="180" >
+          </a>
+          <div class="col-md-4">
+              <h1 style="color: white;">MICROSERVICIOS DE UNIDADES OPERATIVAS</h1>
+            </div>
+            <img style="border-radius: 70px; background-color: rgb(226, 223, 223);" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png" width="115" height="100">
+        </div> 
+    </nav>
+    
+    <div class="col-md-12 p-2">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-save"></i> New card</button>
+        <table class="table mt-2 table-bordered">
+            <thead class="table-primary">
+              <tr>
+
+                <th>IDENTIFICADOR</th>
+                <th>NOMBRE</th>
+                <th>DIRECTOR</th>
+                <th>TELEFONO</th>
+                <th>DIRECCION</th>
+                <th>DEPARTAMENTO</th>
+                <th>ESTADO DEL REGISTRO</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listUnits">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.director}}</td>
+                <td>{{item.telephone}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.department}}</td>
+                <td>{{item.active}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectItem(item)">
+                      <i class="fa fa-pencil"></i>
+                  </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="delete(item.id)">
+                      <i class="fa fa-trash"></i>
+                  </button>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    
+<!-- TODO: Modals -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 *ngIf="!isUpdate" class="modal-title fs-5">Nueva Unidad Operativa</h1>
+        <h1 *ngIf="isUpdate" class="modal-title fs-5">Actualizar una Unidad Operativad</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="newCard()"></button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="formUnit">
+              <div class="mb-7 row">
+                  <label class="col-sm-7 col-form-label">NOMBRE : </label>
+                  <div class="col-sm-17">
+                    <input type="text" class="form-control" formControlName="name">
+                  </div>
+              </div>
+              <div class="mb-7 row">
+                  <label class="col-sm-7 col-form-label">DIRECTOR : </label>
+                  <div class="col-sm-17">
+                    <input type="text" class="form-control" formControlName="director">
+                  </div>
+              </div>
+              <div class="mb-7 row">
+                  <label class="col-sm-7 col-form-label">TELEFONO : </label>
+                  <div class="col-sm-17">
+                    <input type="text" class="form-control" formControlName="telephone">
+                  </div>
+              </div>
+              <div class="mb-7 row">
+                  <label class="col-sm-7 col-form-label">DIRECCION : </label>
+                  <div class="col-sm-17">
+                    <input type="text" class="form-control" formControlName="address">
+                  </div>
+              </div>
+              <div class="mb-7 row">
+                <label class="col-sm-7 col-form-label">DEPARTAMENTO : </label>
+                <div class="col-sm-17">
+                  <input type="text" class="form-control" formControlName="department">
+                </div>
+            </div>              
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button *ngIf="!isUpdate" type="button" class="btn btn-success btn-sm"(click)="save()">Save</button>
+        <button *ngIf="isUpdate" type="button" class="btn btn-warning btn-sm" (click)="update()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
