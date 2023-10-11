@@ -1,1 +1,0 @@
-INSERT INTO Unidad_Operativa (name,director,telephone,address,department, active) VALUES('Centro Juvenil de Servicio de Orientación al Adolescente - SOA Arequipa','Lic. Andrés Manrique Miranda','Sin número de telefono','Estadio Víctor Andrés Belaunde, sector  Zamácola - Cerro Colorado','Arequipa', 'A');
